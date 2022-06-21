@@ -25,29 +25,24 @@ This is a comment that spans multiple lines.
 
 3) Are you a returning student? (i.e. Did you take 61AS last semester?): No
 
-4) What made you to take 61AS?: I want to learn proper CS fundamentals to fill my knowledge gaps
+4) What made you to take 61AS?: To learn CS fundamentals
 
-; -----------------------------------------------
+5) Tell us interesting things about yourself.: Nah I'm good
 
-; CS61AS exercises
+|#
 
-; -----------------------------------------------
+;; Make a followup on the "Hello World!" post on Piazza introducing yourself.
+
 
 ;; Exercise 1 - Define sum-of-squares
 ;(define (square x) (* x x))
-
-; -----------------------------------------------
-
+;;;-------------------------------
+;
 ;(define (sum-of-squares x y) (+ (square x) (square y)))
 ;
 ;(sum-of-squares 3 4)
 
-; -----------------------------------------------
-
 ;; Additional exercises (interlude)
-
-; -----------------------------------------------
-
 ; ;(cond ((= 32 (* 8 5)) 'right)
 ;      ((= 36 (* 9 4)) 'wrong!)
 ;      ((= 40 (* 9 100)) '("very wrong"))
@@ -56,45 +51,34 @@ This is a comment that spans multiple lines.
 ;(define (functionzinha? num1 num2)
 ;   (* num1 num2))
 ;
-;(if (< 100 (functionzinha 500 2))
+;(if (< 100 (functionzinha? 500 2))
 ;    '("bigger than a 100")
 ;    '("smaller than a 100"))
-
-; -----------------------------------------------
 
 ;(cond ((=(* 32 2) 64) 'correct64)
 ;((=(* 32 6) 64) 'wrong64)
 ;(else 'noluck))
 
-; -----------------------------------------------
-
 ;(define (mult a b)
 ;  (* a b))
-
+;
 ;(mult 32 4)
-
-; -----------------------------------------------
 
 ;(define (ifcheck a b c)
 ;(if (= c (+ a b))'yay))
 ;
 ;(ifcheck 32 50 82)
 
-; -----------------------------------------------
-
 ;(define (andcheck a b c)
 ;(and (< a b) (> b c)))
 ;
 ;(andcheck 42 80 53)
-
-; -----------------------------------------------
 
 ;(define (orcheck a b c)
 ;(or (=(+ a b) (+ b c)))) 
 ;
 ;(orcheck 40 20 40)
 
-; -----------------------------------------------
 
 ;; Exercise 2a - Define can-drive
 
@@ -105,7 +89,6 @@ This is a comment that spans multiple lines.
 ;
 ;(can-drive 17)
 
-; -----------------------------------------------
 
 ;; Exercise 2b - Define fizzbuzz
 
@@ -116,13 +99,14 @@ This is a comment that spans multiple lines.
 ;
 ;(fizzbuzz 20)
 
-; -----------------------------------------------
 
 ;; Exercise 3 - Why did the Walrus cross the Serengeti?
 
-; Skipped because I don't have access to Berkeley's Piazza platform.
+#|
+Your answer here
 
-; -----------------------------------------------
+
+|#
 
 ;; Exercise 4 - new-if vs if
 ;
@@ -138,8 +122,6 @@ This is a comment that spans multiple lines.
 ;  (/ 4 2))
 ;;|#
 
-; -----------------------------------------------
-
 ;(define (double x) (+ x x))
 ;(define (f z) (+ (square (double z)) 1))
 ;
@@ -151,7 +133,6 @@ This is a comment that spans multiple lines.
 ;(+ 36 1)
 ;= 37
 
-; -----------------------------------------------
 
 ;(define (plural wd)
 ;  (cond ((equal? (last wd) 'a) (word (bl wd) 'ãozão))
@@ -164,7 +145,6 @@ This is a comment that spans multiple lines.
 ;
 ;(plural 'januário)
 
-; -----------------------------------------------
 
 ;(define (pigl wd)
 ;(if (pl-done? wd)
@@ -179,9 +159,6 @@ This is a comment that spans multiple lines.
 ;
 ;(pigl 'krkn)
 
-; -----------------------------------------------
-
-; SICP exercises below
 
 ; a = 3
 ; b = 4
@@ -190,8 +167,6 @@ This is a comment that spans multiple lines.
 ;(+ 3 4 (* 3 4))
 ;(+ 3 4 12)
 ;(19)
-
-; -----------------------------------------------
 
 ;(= a b) ;false
 ;
@@ -215,63 +190,49 @@ This is a comment that spans multiple lines.
 ;    b (this is the value that will output)
 ;    a)
 
-; -----------------------------------------------
+(define a 3)
+(define b (+ a 1))
+(+ a b (* a b)) ; (+ 3 4 (* 3 4)) -> (+ 3 4 12) -> 19
 
-;(define a 3)
-;(define b (+ a 1))
-;(+ a b (* a b)) ; (+ 3 4 (* 3 4)) -> (+ 3 4 12) -> 19
+(cond ((= a 4) 6) ;((= 3 4) 6) #will return false
+      ((= b 4) (+ 6 7 a)) ;((= 4 4) (+ 6 7 3)) -> ((#true) 16) #will return true and output 16
+      (else 25))
 
-; -----------------------------------------------
+(+ 2 (if (> b a) b a)) ; (+ 2 (if (> 4 3) 4 3)) -> (+2 (#true) (4 #this statement evaluates to true, will return 4) 3) -> (+ 2 4) -> 6
 
-;(cond ((= a 4) 6) ;((= 3 4) 6) #will return false
-;      ((= b 4) (+ 6 7 a)) ;((= 4 4) (+ 6 7 3)) -> ((#true) 16) #will return true and output 16
-;      (else 25))
+(* (cond ((> a b) a) ; ((> 3 4) 3) -> #false, 3 is not greater than 4
+         ((< a b) b) ; ((< 3 4) 4) -> #true, 3 is indeed lesser than 4, will return 4, to be multiplied with the * prefix
+         (else -1))
+         (+ a 1)) ; ((* 4 (+ 3 1))) -> ((* 4 4)) -> 16
 
-; -----------------------------------------------
 
-;(+ 2 (if (> b a) b a)) ; (+ 2 (if (> 4 3) 4 3)) -> (+2 (#true) (4 #this statement evaluates to true, will return 4) 3) -> (+ 2 4) -> 6
+(/ (+ 5 4 (- 2 (- 3 (+ 6 (/ 4 5)))))
+   (* 3 (- 6 2)(- 2 7)))
 
-; -----------------------------------------------
-
-;(* (cond ((> a b) a) ; ((> 3 4) 3) -> #false, 3 is not greater than 4
-;         ((< a b) b) ; ((< 3 4) 4) -> #true, 3 is indeed lesser than 4, will return 4, to be multiplied with the * prefix
-;         (else -1))
-;         (+ a 1)) ; ((* 4 (+ 3 1))) -> ((* 4 4)) -> 16
-
-; -----------------------------------------------
-
-;(/ (+ 5 4 (- 2 (- 3 (+ 6 (/ 4 5)))))
-;   (* 3 (- 6 2)(- 2 7)))
-;   (* 3 4 5)
-;   = 60
-
-; -----------------------------------------------
 
 ; return (sum-of-square (insert the two largest numbers here))
 
-;(define (sum-of-square x y)
-;  (+ (* x x) (* y y)))
+(define (sum-of-square x y)
+  (+ (* x x) (* y y)))
+
+(define (sumlargest x y z)
+  (cond ((and (> x y z) (> y z)) (sum-of-square x y))
+        ((and (> x y z) (> z y)) (sum-of-square x z))
+        
+        ((and (> y x z) (> z x)) (sum-of-square y z))
+        ((and (> y x z) (> x z)) (sum-of-square y x))
+
+        ((and (> z y x) (> y x)) (sum-of-square z y))
+        ((and (> z y x) (> x y)) (sum-of-square z x))))
+
+(sumlargest 42.0 50.0 60.0)
 
 
-;(define (sumlargest x y z)
-;  (cond ((and (> x y z) (> y z)) (sum-of-square x y))
-;        ((and (> x y z) (> z y)) (sum-of-square x z))
-;        
-;        ((and (> y x z) (> z x)) (sum-of-square y z))
-;        ((and (> y x z) (> x z)) (sum-of-square y x))
-;
-;        ((and (> z y x) (> y x)) (sum-of-square z y))
-;        ((and (> z y x) (> x y)) (sum-of-square z x))))
-;
-;(sumlargest 42.0 50.0 60.0)
-
-; -----------------------------------------------
-
-;(define (a-plus-abs-b a b)
-;  ((if (> b 0) 
-;       +
-;       -)
-;   a b))
+(define (a-plus-abs-b a b)
+  ((if (> b 0) 
+       +
+       -)
+   a b))
 
 ; = ((+/- a b));
 ; if b > 0,
@@ -279,9 +240,7 @@ This is a comment that spans multiple lines.
 ; otherwise, subtract both operands (which will result in an adition because unsigned with unsigned = signed)
 
 ;(a-plus-abs-b 40 -80)
-
-; -----------------------------------------------
-
+;
 ;(define (p) (p))
 ;
 ;(define (test x y)
@@ -318,7 +277,6 @@ This is a comment that spans multiple lines.
 ;    (p) ))
 ; (= 0 0) is still true, will return 0, just as applicative order evaluation
 
-; -----------------------------------------------
 
 ; Newton's method of successive approximations
 
@@ -368,7 +326,7 @@ This is a comment that spans multiple lines.
 ;
 ;(sqrt 2)
 
-; -----------------------------------------------
+
 
 ; Exercise 1.6
 ; Alyssa P. Hacker doesn't see why if needs to be provided as a special form.
@@ -387,7 +345,7 @@ This is a comment that spans multiple lines.
 ;
 ;(sqrt-iter2 1.0 2)
 
-; -----------------------------------------------
+
 
 ; Exercise 1.7
 ; The good-enough? test used in computing square roots will not be very effective for finding the square roots of very small numbers[...]
@@ -397,9 +355,11 @@ This is a comment that spans multiple lines.
 
 ; (sqrt 0.00000002) <- this test breaks because of precision
 
-; -----------------------------------------------
+
 
 ; Exercise 1.8
+;
+
 
 (define (sqrt x)
   (sqrt-iter 1.0 x))
@@ -421,5 +381,5 @@ This is a comment that spans multiple lines.
 (define (good-enough? guess x)
   (< (abs (- (square guess) x)) 1))
 
-(sqrt 2)
+(sqrt 9)
 
