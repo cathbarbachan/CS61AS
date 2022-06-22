@@ -389,7 +389,7 @@ This is a comment that spans multiple lines.
 
 ; -----------------------------------------------
 
-; Exercise 1.7
+; Exercises 1.7 + 1.8
 ; The good-enough? test used in computing square roots will not be very effective for finding the square roots of very small numbers[...]
 ; An alternative strategy for implementing good-enough? is to watch how guess changes from one iteration to the next
 ; and to stop when the change is a very small fraction of the guess. Design a square-root procedure that uses this kind of end test.
@@ -397,29 +397,29 @@ This is a comment that spans multiple lines.
 
 ; (sqrt 0.00000002) <- this test breaks because of precision
 
-; -----------------------------------------------
+; Newton's method for cube roots is based on the fact that if y is an approximation to the cube root of x, then a better approximation is given by the value
+; x/y² + 2y / 3
+; Use this formula to implement a cube-root procedure analogous to the square-root procedure.
 
-; Exercise 1.8
-
-(define (sqrt x)
-  (sqrt-iter 1.0 x))
-
-(define (sqrt-iter guess x)
-  (if (good-enough? guess x)
-      guess
-      (sqrt-iter (improve guess x) x)))
-
-(define (improve guess x)
-  (average guess (/ x guess)))
-
-(define (average x y)
-  ( / ( + ( / x (square y)) (* 2 y)) 3.0))
-
-(define (square x)
-  (* x x))
-
-(define (good-enough? guess x)
-  (< (abs (- (square guess) x)) 1))
-
-(sqrt 2)
+;(define (cube-root x)
+;  (cuberoot-iter 1.0 x))
+;
+;(define (cuberoot-iter guess x)
+;  (if (good-enough? guess (improve guess x))
+;      guess
+;      (cuberoot-iter (improve guess x) x)))
+;
+;(define (average x y)
+;  (/ (+ x y) 2))
+;
+;(define (improve guess x)
+;  ( / ( + ( / x (* guess guess)) (* 2 guess)) 3))
+;
+;(define (square x)
+;  (* x x))
+;
+;(define (good-enough? previous-guess guess)
+;  (< (abs (/ (- guess previous-guess) guess)) 0.000000001))
+;
+;(cube-root 9)
 
